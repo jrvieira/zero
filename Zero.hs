@@ -21,6 +21,10 @@ infix 1 #
 (#) :: a -> String -> a
 (#) a s = trace (clr Bold $ clr Blue $ "# " ++ s) a
 
+-- full range of bounded set
+total :: (Bounded a,Enum a) => [a]
+total = [minBound..]
+
 -- parse numbers from a string
 parseNums :: (Read a,Num a) => String -> [a]
 parseNums = go [] []
