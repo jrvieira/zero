@@ -89,8 +89,8 @@ floyd (a:as) = go 1 1 a as
 --    go n (x:xs) = [((n,y),True) | y <- [0..x]] ++ go (succ n) xs
 
 -- test
-test :: Show a => String -> (a -> Bool) -> a -> IO ()
-test t p a = putStrLn $ unwords ['\n' : t , clr c m , '\n' : clr c (show a) , "\n"]
+tept :: Show a => String -> (a -> Bool) -> a -> IO ()
+tept t p a = putStrLn $ unwords ['\n' : t , clr c m , '\n' : clr c (show a) , "\n"]
    where
    (c,m)
       | p a = (Green,"v")
