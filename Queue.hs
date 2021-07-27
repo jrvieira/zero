@@ -5,6 +5,9 @@ import Data.Foldable
 -- queue
 data Queue a = Queue [a] [a]
 
+instance Eq a => Eq (Queue a) where
+   qa == qb = toList qa == toList qb
+
 instance Semigroup (Queue a) where
    Queue ia oa <> Queue ib ob = Queue ib (oa <> reverse ia <> ob)
 
