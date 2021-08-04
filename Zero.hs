@@ -108,7 +108,7 @@ teqt t e a = putStrLn $ unwords ['\n' : t , clr c m , r , '\n' : clr c (show a) 
 (∈) = elem
 
 (∉) :: (Foldable t, Eq a) => a -> t a -> Bool
-(∉) e = not . elem e
+(∉) = notElem
 
 (∋) :: (Foldable t, Eq a) => t a -> a -> Bool
 (∋) = flip elem
@@ -124,4 +124,3 @@ instance Eq a => Comparable [a] where
 instance Ord a => Comparable (Set a) where
    (∪) = Set.union
    (∩) = Set.intersection
-
