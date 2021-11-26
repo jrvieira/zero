@@ -27,15 +27,11 @@ total = [minBound..]
 
 -- parse numbers from a string
 parseNums :: (Read a,Num a) => String -> [a]
-parseNums = go [] []
-   where
-   go nums acc ""
-      | null acc = (read . reverse) <$> reverse nums
-      | otherwise = (read . reverse) <$> reverse (acc:nums)
-   go nums acc (c:cs)
-      | isDigit c = go nums (c:acc) cs
-      | null acc  = go nums acc cs
-      | otherwise = go (acc:nums) [] cs
+parseNums xs
+      | null n = []
+      | otherwise = read n : parseNums r
+      where
+      (n,r) = span isDigit $ dropWhile (not . isDigit) xs
 
 -- remove duplicates
 unique :: Ord a => [a] -> [a]
@@ -56,14 +52,14 @@ fixp f !a
    where
    a' = f a
 
--- remove element from assoc by key 
+-- remove element from assoc by key
 remove :: Eq k => k -> [(k,v)] -> [(k,v)]
 remove _ [] = []
 remove k (x:xs)
    | k == fst x = remove k xs
    | otherwise = x : remove k xs
 
--- remove element from assoc by value 
+-- remove element from assoc by value
 erase :: Eq v => v -> [(k,v)] -> [(k,v)]
 erase _ [] = []
 erase v (x:xs)
@@ -83,7 +79,7 @@ floyd (a:as) = go 1 1 a as
 
 -- simple plot from list of ints
 -- plot :: String -> [Int] -> IO ()
--- plot f = draw f . go 0 
+-- plot f = draw f . go 0
 --    where
 --    go _ [] = []
 --    go n (x:xs) = [((n,y),True) | y <- [0..x]] ++ go (succ n) xs
