@@ -44,6 +44,16 @@ takeLast n l = go (drop n l) l
    go [] rs = rs
    go xs ys = go (tail xs) (tail ys)
 
+-- get chunks between prefix and suffix, delimited
+insides :: (a -> Bool) -> (a -> Bool) -> a -> [a] -> [a]
+insides ps pe d = go False
+   where
+   go _ [] = []
+   go False (x:xs) = go (ps x) xs
+   go True (x:xs)
+      | pe x = d : go False xs
+      | otherwise = x : go True xs
+
 -- fixed point of iteration
 fixp :: Eq a => (a -> a) -> a -> a
 fixp f !a
