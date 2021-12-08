@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Zero.Queue where
 
 import Data.Foldable

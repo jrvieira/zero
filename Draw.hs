@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Zero.Draw (draw) where
 
 import Codec.Picture
@@ -11,7 +13,7 @@ type Map a = [((Int,Int),a)]
 draw :: String -> Map Bool -> IO ()
 draw f m = savePngImage (f ++ ".png") $ ImageY8 (generateImage pxl w h)
    where
-   pxl x y = fromMaybe 63 $ lookup (x,y) m' 
+   pxl x y = fromMaybe 63 $ lookup (x,y) m'
    (w,h) = join bimap (succ . maximum) . unzip $ map fst m'
    m' = translate m
 

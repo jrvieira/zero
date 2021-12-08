@@ -1,3 +1,5 @@
+{-# LANGUAGE Safe #-}
+
 module Zero.Shut (shut,unit) where
 
 import Zero.Color

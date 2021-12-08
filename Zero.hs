@@ -1,4 +1,4 @@
-{-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE Trustworthy, BangPatterns #-}
 
 module Zero.Zero where
 
@@ -20,6 +20,9 @@ echo s x = do
 infix 1 #
 (#) :: a -> String -> a
 (#) a s = trace (clr Bold $ clr Blue $ "# " ++ s) a
+
+size :: (Foldable t, Enum i, Num i) => t a -> i
+size = foldl' (flip $ const succ) 0
 
 -- full range of bounded set
 total :: (Bounded a,Enum a) => [a]
