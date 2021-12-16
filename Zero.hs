@@ -4,7 +4,7 @@ module Zero.Zero where
 
 import Zero.Color
 -- import Zero.Draw
-import Debug.Trace
+import Debug.Trace ( trace )
 import Data.List
 import Data.Char
 import Data.Set (Set)
