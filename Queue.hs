@@ -35,9 +35,9 @@ infixr 7 >|
 (>|) :: a -> Queue a -> Queue a
 (>|) = enqueue
 
-dequeue :: Queue a -> (Maybe a,Queue a)
+dequeue :: Queue a -> Maybe (a,Queue a)
 dequeue q@(Queue i o)
-   | null q = (Nothing,q)
+   | null q = Nothing
    | null o = dequeue $ Queue [] (reverse i)
-   | otherwise = (Just $ head o,Queue i (tail o))
+   | otherwise = Just (head o,Queue i (tail o))
 

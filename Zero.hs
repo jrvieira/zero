@@ -9,6 +9,8 @@ import Data.List
 import Data.Char
 import Data.Set (Set)
 import qualified Data.Set as Set
+import Data.Map.Strict (Map)
+import qualified Data.Map.Strict as Map
 
 echo :: Show a => String -> a -> IO ()
 echo s x = do
@@ -39,6 +41,13 @@ parseNums xs
 -- remove duplicates
 unique :: Ord a => [a] -> [a]
 unique = Set.toList . Set.fromList
+
+-- count each element's occurrence
+index :: forall f a n. (Foldable f, Ord a, Num n) => f a -> Map a n
+index = foldl' go Map.empty
+   where
+   go :: Map a n -> a -> Map a n
+   go m x = Map.insertWith (+) x 1 m
 
 -- last n elements
 takeLast :: Int -> [a] -> [a]
