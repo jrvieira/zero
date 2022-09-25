@@ -30,6 +30,13 @@ size = foldl' (flip $ const succ) 0
 total :: (Bounded a,Enum a) => [a]
 total = [minBound..]
 
+-- cycle through enums
+next :: (Eq a, Enum a, Bounded a) => a -> a
+next a = if a == maxBound then minBound else succ a
+
+prev :: (Eq a, Enum a, Bounded a) => a -> a
+prev a = if a == minBound then maxBound else pred a
+
 -- parse numbers from a string
 parseNums :: (Read a,Num a) => String -> [a]
 parseNums xs
