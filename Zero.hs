@@ -11,6 +11,7 @@ import Data.Set (Set)
 import qualified Data.Set as Set
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
+import Control.Arrow
 
 echo :: Show a => String -> a -> IO ()
 echo s x = do
@@ -69,6 +70,13 @@ takeLast n l = go (drop n l) l
    where
    go [] rs = rs
    go xs ys = go (tail xs) (tail ys)
+
+packs :: [Int] -> [a] -> ([[a]],[a])
+packs ns as = first (go ns) $ splitAt (sum ns) as
+   where
+   go :: [Int] -> [a] -> [[a]]
+   go [] xs = pure xs
+   go (n:ns) xs = let (x,xs') = splitAt n xs in x : go ns xs'
 
 -- get chunks between prefix and suffix, delimited
 insides :: (a -> Bool) -> (a -> Bool) -> a -> [a] -> [a]
