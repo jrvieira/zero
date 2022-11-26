@@ -72,7 +72,7 @@ takeLast n l = go (drop n l) l
    go xs ys = go (tail xs) (tail ys)
 
 packs :: [Int] -> [a] -> ([[a]],[a])
-packs ns as = first (go ns) $ splitAt (sum ns) as
+packs nn ls = first (go nn) $ splitAt (sum nn) ls
    where
    go :: [Int] -> [a] -> [[a]]
    go [] xs = pure xs
