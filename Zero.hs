@@ -13,12 +13,6 @@ import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
 import Control.Arrow
 
-echo :: Show a => String -> a -> IO ()
-echo s x = do
-   putStr $ clr Cyan $ s <> ": "
-   print x
-   putStrLn []
-
 -- trace
 infix 1 #
 (#) :: a -> String -> a
