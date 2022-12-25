@@ -4,7 +4,7 @@ module Zero.Zero where
 
 import Zero.Color
 -- import Zero.Draw
-import Debug.Trace ( trace )
+import Debug.Trace qualified as Debug ( trace )
 import Data.List
 import Data.Char
 import Data.Set (Set)
@@ -16,7 +16,10 @@ import Control.Arrow
 -- trace
 infix 1 #
 (#) :: a -> String -> a
-(#) a s = trace (clr Bold $ clr Blue $ "# " ++ s) a
+(#) a s = Debug.trace (clr Bold $ clr Blue $ "# " ++ s) a
+
+trace :: Show b => String -> (a -> b) -> a -> a
+trace s f x = x  # unwords [s,show $ f x]
 
 size :: (Foldable t, Enum i, Num i) => t a -> i
 size = foldl' (flip $ const succ) 0
@@ -45,7 +48,10 @@ parseNums xs
       | null n = []
       | otherwise = read n : parseNums r
       where
-      (n,r) = span isDigit $ dropWhile (not . isDigit) xs
+      (n,r) = span numeric $ dropWhile (not . numeric) xs
+
+      numeric :: Char -> Bool
+      numeric c = or [isDigit c,c ∈ "-"]
 
 -- remove duplicates
 unique :: Ord a => [a] -> [a]
