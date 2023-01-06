@@ -24,6 +24,11 @@ trace s f x = x  # unwords [s,show $ f x]
 size :: (Foldable t, Enum i, Num i) => t a -> i
 size = foldl' (flip $ const succ) 0
 
+-- complete graph edges from list
+complete :: [a] -> [(a,[a])]
+complete [] = []
+complete (x : xs) = (x, xs) : (fmap (x :) <$> complete xs)
+
 -- full range of bounded set
 total :: (Bounded a,Enum a) => [a]
 total = [minBound..]
