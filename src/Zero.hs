@@ -1,6 +1,6 @@
 {-# LANGUAGE Trustworthy, BangPatterns #-}
 
-module Zero.Zero where
+module Zero where
 
 import Zero.Color
 -- import Zero.Draw

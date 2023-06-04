@@ -20,7 +20,7 @@ library
     -- Modules exported by the library.
     exposed-modules:  Zero
       , Zero.Color
-      , Zero.Draw
+--    , Zero.Draw
       , Zero.Echo
       , Zero.Queue
       , Zero.Shut
@@ -31,6 +31,8 @@ library
 
     build-depends:    base ^>=4.18.0.0
       , containers
+      , split
+--    , JuicyPixels
 
     hs-source-dirs:   src
 
