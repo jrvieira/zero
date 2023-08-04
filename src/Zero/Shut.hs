@@ -1,5 +1,7 @@
 module Zero.Shut (shut,unit) where
 
+import Prelude hiding ( fail )
+
 import Zero.Color
 import Data.List
 import System.Exit
@@ -11,21 +13,18 @@ instance Show Unit where
    show (Pass d _) = clr Green "v " ++ clr Dim d
 
 detail :: Unit -> String
-detail unit@(Fail _ t v) = intercalate "\n" [
-   ""
-   ,
-   show unit
-   ,
-   clr Dim "  " ++ t
-   ,
-   clr Dim "v " ++ clr Dim v
-   ]
-detail unit@(Pass _ t) = intercalate "\n" ["",show unit,"  " ++ t]
-
+detail u@(Fail _ t v) = intercalate "\n" [
+   "" ,
+   show u ,
+   clr Dim "  " ++ t ,
+   clr Dim "v " ++ clr Dim v ]
+detail u@(Pass _ t) = intercalate "\n" [
+   "" ,
+   show u ,
+   "  " ++ t ]
 
 unit :: (Eq a,Show a) => String -> a -> a -> Unit
 unit d t v = if t /= v then Fail d (show t) (show v) else Pass d (show t)
-
 
 shut :: [Unit] -> IO ()
 shut t = do
