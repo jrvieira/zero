@@ -1,5 +1,3 @@
-{-# LANGUAGE Safe #-}
-
 module Zero.Color (Color (..),clr) where
 
 data Color = Reset | Default | Black | Red | Green | Yellow | Blue | Magenta | Cyan | White | Bold | Dim | Grey | Italic | Strike | Underline | Reverse | Inverse

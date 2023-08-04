@@ -1,5 +1,3 @@
-{-# LANGUAGE Trustworthy, BangPatterns #-}
-
 module Zero where
 
 import Zero.Color

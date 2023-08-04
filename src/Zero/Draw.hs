@@ -1,5 +1,3 @@
-{-# LANGUAGE Safe #-}
-
 module Zero.Draw (draw) where
 
 import Codec.Picture
