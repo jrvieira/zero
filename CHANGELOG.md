@@ -1,4 +1,4 @@
-# Revision history for Zero
+# Revision history for zero
 
 ## 0.0.0.0 -- YYYY-mm-dd
 
