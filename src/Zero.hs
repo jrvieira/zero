@@ -18,7 +18,7 @@ xs !? i
    | null xs = Nothing
    | i < 0 = Nothing
    | i > 0 = tail xs !? pred i
-   | otherwise = head xs
+   | otherwise = Just $ head xs
 
 -- trace
 infix 1 #
