@@ -11,6 +11,15 @@ import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
 import Control.Arrow
 
+-- safe !!
+infixl 9 !?
+(!?) :: [a] -> Int -> Maybe a
+xs !? i
+   | null xs = Nothing
+   | i < 0 = Nothing
+   | i > 0 = tail xs !? pred i
+   | otherwise = head xs
+
 -- trace
 infix 1 #
 (#) :: a -> String -> a
