@@ -1,5 +1,7 @@
 module Zero.Color (Color (..),clr) where
 
+import Data.Text ( Text, pack )
+
 data Color = Reset | Default | Black | Red | Green | Yellow | Blue | Magenta | Cyan | White | Bold | Dim | Grey | Italic | Strike | Underline | Reverse | Inverse
 
 code :: Color -> Int
@@ -23,7 +25,11 @@ code Reverse = 7
 code Inverse = 7
 
 instance Show Color where
-    show c = "\x1b[" ++ (show . code) c ++ "m"
+    show c = "\x1b[" <> (show . code) c <> "m"
 
 clr :: Color -> String -> String
-clr c s = show c ++ s ++ show Reset
+clr c s = show c <> s <> show Reset
+
+clrt :: Color -> Text -> Text
+clrt c t = pack (show c) <> t <> pack (show Reset)
+
