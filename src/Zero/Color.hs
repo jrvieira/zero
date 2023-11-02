@@ -1,4 +1,4 @@
-module Zero.Color (Color (..),clr) where
+module Zero.Color ( Color (..), clr, clrt ) where
 
 import Data.Text ( Text, pack )
 
