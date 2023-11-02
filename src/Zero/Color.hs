@@ -25,7 +25,5 @@ code Inverse = 7
 instance Show Color where
     show c = "\x1b[" ++ (show . code) c ++ "m"
 
-type ColorStr = Color -> String -> String
-
-clr :: ColorStr
+clr :: Color -> String -> String
 clr c s = show c ++ s ++ show Reset
