@@ -177,3 +177,11 @@ instance Eq a => Comparable [a] where
 instance Ord a => Comparable (Set a) where
    (∪) = Set.union
    (∩) = Set.intersection
+
+-- subsets
+subsets :: [a] -> [[a]]
+subsets [] = [[]]
+subsets (x:xs) = ss x (subsets xs)
+   where
+   ss _ [] = []
+   ss x (y:ys) = (x : y) : y : ss x ys
